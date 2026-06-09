@@ -3,8 +3,6 @@ Lightweight and package-friendly Bootstrap scene architecture with minimal setup
 
 Check out [Releases](https://github.com/Persomatey/unity-bootstrap-loading-system/releases) tab to see a history of all versions of this package. 
 
-https://github.com/Persomatey/unity-bootstrap-loading-system/tree/main
-
 ## Installation 
 ### Install via Package Manager
 
