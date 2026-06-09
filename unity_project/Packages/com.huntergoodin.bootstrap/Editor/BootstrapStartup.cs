@@ -2,38 +2,41 @@ using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 
-[InitializeOnLoad]
-public static class BootstrapStartup
+namespace HunterGoodin.Bootstrap
 {
-	private const string BootstrapSceneKey = "BootstrapScenePath";
-
-	static BootstrapStartup()
+	[InitializeOnLoad]
+	public static class BootstrapStartup
 	{
-		EditorApplication.delayCall += ApplyBootstrapScene;
-	}
+		private const string BootstrapSceneKey = "BootstrapScenePath";
 
-	private static void ApplyBootstrapScene()
-	{
-		if (EditorApplication.isPlayingOrWillChangePlaymode)
+		static BootstrapStartup()
 		{
-			return;
+			EditorApplication.delayCall += ApplyBootstrapScene;
 		}
 
-		string scenePath = EditorPrefs.GetString(BootstrapSceneKey, "");
-
-		if (string.IsNullOrEmpty(scenePath))
+		private static void ApplyBootstrapScene()
 		{
-			return;
+			if (EditorApplication.isPlayingOrWillChangePlaymode)
+			{
+				return;
+			}
+
+			string scenePath = EditorPrefs.GetString(BootstrapSceneKey, "");
+
+			if (string.IsNullOrEmpty(scenePath))
+			{
+				return;
+			}
+
+			SceneAsset scene = AssetDatabase.LoadAssetAtPath<SceneAsset>(scenePath);
+
+			if (scene == null)
+			{
+				Debug.LogWarning("Saved Bootstrap scene not found: " + scenePath);
+				return;
+			}
+
+			EditorSceneManager.playModeStartScene = scene;
 		}
-
-		SceneAsset scene = AssetDatabase.LoadAssetAtPath<SceneAsset>(scenePath);
-
-		if (scene == null)
-		{
-			Debug.LogWarning("Saved Bootstrap scene not found: " + scenePath);
-			return;
-		}
-
-		EditorSceneManager.playModeStartScene = scene;
 	}
 }

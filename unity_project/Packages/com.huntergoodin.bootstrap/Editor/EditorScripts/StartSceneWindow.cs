@@ -2,64 +2,67 @@
 using UnityEditor.SceneManagement;
 using UnityEngine;
 
-public class BootstrapWindow : EditorWindow
+namespace HunterGoodin.Bootstrap
 {
-	private const string BootstrapSceneKey = "BootstrapScenePath";
-	private const string DefaultBootstrapScene = "Assets/Scenes/Bootstrap.unity";
-
-	void OnGUI()
+	public class BootstrapWindow : EditorWindow
 	{
-		EditorSceneManager.playModeStartScene =
-			(SceneAsset)EditorGUILayout.ObjectField(
-				new GUIContent("Start Scene"),
-				EditorSceneManager.playModeStartScene,
-				typeof(SceneAsset),
-				false
-			);
+		private const string BootstrapSceneKey = "BootstrapScenePath";
+		private const string DefaultBootstrapScene = "Assets/Scenes/Bootstrap.unity";
 
-		if (GUILayout.Button("Set Bootstrap Start Scene"))
+		void OnGUI()
 		{
-			SetPlayModeStartScene(DefaultBootstrapScene);
+			EditorSceneManager.playModeStartScene =
+				(SceneAsset)EditorGUILayout.ObjectField(
+					new GUIContent("Start Scene"),
+					EditorSceneManager.playModeStartScene,
+					typeof(SceneAsset),
+					false
+				);
+
+			if (GUILayout.Button("Set Bootstrap Start Scene"))
+			{
+				SetPlayModeStartScene(DefaultBootstrapScene);
+			}
+		}
+
+		void SetPlayModeStartScene(string scenePath)
+		{
+			SceneAsset scene = AssetDatabase.LoadAssetAtPath<SceneAsset>(scenePath);
+			if (scene == null)
+			{
+				Debug.LogError("Could not find Scene " + scenePath);
+				return;
+			}
+
+			EditorSceneManager.playModeStartScene = scene;
+
+			// 🔒 Persist it
+			EditorPrefs.SetString(BootstrapSceneKey, scenePath);
+		}
+
+		[MenuItem("Bootstrap/SetStartScene")]
+		static void Open()
+		{
+			GetWindow<BootstrapWindow>("Bootstrap");
 		}
 	}
 
-	void SetPlayModeStartScene(string scenePath)
+	[InitializeOnLoad]
+	public static class PlayModeBootstrapSetup
 	{
-		SceneAsset scene = AssetDatabase.LoadAssetAtPath<SceneAsset>(scenePath);
-		if (scene == null)
+		static PlayModeBootstrapSetup()
 		{
-			Debug.LogError("Could not find Scene " + scenePath);
-			return;
+			EditorApplication.playModeStateChanged += OnPlayModeChanged;
 		}
 
-		EditorSceneManager.playModeStartScene = scene;
-
-		// 🔒 Persist it
-		EditorPrefs.SetString(BootstrapSceneKey, scenePath);
-	}
-
-	[MenuItem("Bootstrap/SetStartScene")]
-	static void Open()
-	{
-		GetWindow<BootstrapWindow>("Bootstrap");
-	}
-}
-
-[InitializeOnLoad]
-public static class PlayModeBootstrapSetup
-{
-	static PlayModeBootstrapSetup()
-	{
-		EditorApplication.playModeStateChanged += OnPlayModeChanged;
-	}
-
-	static void OnPlayModeChanged(PlayModeStateChange state)
-	{
-		if (state == PlayModeStateChange.ExitingEditMode)
+		static void OnPlayModeChanged(PlayModeStateChange state)
 		{
-			// Save the current open scene path before entering Play Mode
-			var activeScene = EditorSceneManager.GetActiveScene();
-			EditorPrefs.SetString("PreviousScenePath", activeScene.path);
+			if (state == PlayModeStateChange.ExitingEditMode)
+			{
+				// Save the current open scene path before entering Play Mode
+				var activeScene = EditorSceneManager.GetActiveScene();
+				EditorPrefs.SetString("PreviousScenePath", activeScene.path);
+			}
 		}
 	}
 }
