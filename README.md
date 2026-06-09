@@ -141,7 +141,7 @@ Used to manually version bump the version number. Should be in the format `X.Y.Z
 11. In `.github/workflows/package.yml`, in the `env`, set the following variables:
     - `PROJECT_PATH` (line 12) with the unity project name from Step 3
 	- `PACKAGE_NAME` (line 13) with the unity package name from Step 4
-12. ((optional <i>technically</i>) but <b>HIGHLY</b> suggested) Use Jeff Adulco's Unity GUID Regenerator package
+12. (Optional (<i>technically</i>) but <b>HIGHLY</b> suggested) Use Jeff Adulco's Unity GUID Regenerator package
     - If you create multiple packages using this template, this is a **MUST** as it allows users to use all of your packages without conflicting with each other 
     - Doing this at this early stage before you start developing will ensure you don't break any GUID references while you're building because, while Unity GUID Regenerator is good, it isn't perfect and can lead to broken references which are annoying. 
     1. Install using `https://github.com/jeffjadulco/unity-guid-regenerator.git`
