@@ -5,7 +5,7 @@ using UnityEngine;
 public class BootstrapWindow : EditorWindow
 {
 	private const string BootstrapSceneKey = "BootstrapScenePath";
-	private const string DefaultBootstrapScene = "Assets/Scenes/Bootstrap.unity";
+	//private const string DefaultBootstrapScenePath = "Assets/Scenes/Bootstrap.unity";
 
 	private const string OverrideIntendedMenuFlowKey = "OverrideIntendedMenuFlowKey";
 	private bool OverrideMenuFlow;
@@ -27,10 +27,10 @@ public class BootstrapWindow : EditorWindow
 				false
 			);
 
-		if (GUILayout.Button("Set Bootstrap Start Scene"))
-		{
-			SetPlayModeStartScene(DefaultBootstrapScene);
-		}
+		//if (GUILayout.Button("Set Bootstrap Start Scene"))
+		//{
+		//	SetPlayModeStartScene(DefaultBootstrapScene);
+		//}
 
 		EditorGUILayout.Space();
 
