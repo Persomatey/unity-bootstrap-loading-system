@@ -12,9 +12,9 @@ Check out [Releases](https://github.com/Persomatey/unity-bootstrap-loading-syste
 </details>
 
 For latest release:</br>
-`https://github.com/Persomatey/unity-package-ci-cd-system-template.git#upm`</br>
+`https://github.com/Persomatey/unity-bootstrap-loading-system.git#upm`</br>
 Or install specific releases:</br>
-`https://github.com/Persomatey/unity-package-ci-cd-system-template.git#v#.#.#`
+`https://github.com/Persomatey/unity-bootstrap-loading-system.git#v#.#.#`
 
 ### Download the tarball directly from release
 <details>
@@ -32,10 +32,25 @@ Or install specific releases:</br>
 </details>
 
 ## Set up 
-1. If you're not going to use the provided `Bootstrap.unity` scene, make sure you drag the `Bootstrap.cs` script onto one of the GameObjects in your bootstrap scene 
-2. In `Packages/com.huntergoodin.bootstrap/Editor/EditorScripts/StartSceneWindow.cs`, ensure you change the `DefaultBootstrapScene` (Line 8) to the path of your chosen Bootstrap scene 
-3. The wait conditions in `Bootstrap.WaitUntilSingletonsHaveLoaded()` are optional, pick which one you want to use 
-		- The package is immutable by default but you can always just Right Click > Show in Explorer/Finder/etc then edit it directly in a text editor 
+1. Navigate to Bootstrap > Bootstrap Menu > Start Scene 
+	<br/>
+	<img src="https://raw.githubusercontent.com/Persomatey/unity-bootstrap-loading-system/refs/heads/main/images/example1.png">
+	<br/>
+2. Then set it to the provided Bootstrap scene (or the scene of your choice) to load before everything else  
+	<br/>
+	<img src="https://raw.githubusercontent.com/Persomatey/unity-bootstrap-loading-system/refs/heads/main/images/example2.png">
+	<details>
+	<summary>also...</summary>
+		if you want to load into a different scene than usual after the bootstrap (for testing purposes, etc.) you can do so by enabling the "Override Followup Scene" option 
+		<br/>
+		<img src="https://raw.githubusercontent.com/Persomatey/unity-bootstrap-loading-system/refs/heads/main/images/example3.png">
+	</details>
+3. Make sure you include the name of the scene you want to load into after the bootstrap in your bootstrap object's Bootstrap component in the inspector `nextSceneName`. 
+	<br/>
+	<img src="https://raw.githubusercontent.com/Persomatey/unity-bootstrap-loading-system/refs/heads/main/images/example4.png">
+4. If you're not going to use the provided `Bootstrap.unity` scene, make sure you drag the `Bootstrap.cs` script onto one of the GameObjects in your bootstrap scene 
+5. The wait conditions in `Bootstrap.WaitUntilSingletonsHaveLoaded()` are optional, pick which one you want to use 
+	- The package is immutable by default but you can always just Right Click > Show in Explorer/Finder/etc then edit it directly in a text editor 
 
 ## Features 
 - Automatically forces a designated Bootstrap scene to load first in Play Mode	
