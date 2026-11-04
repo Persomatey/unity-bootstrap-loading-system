@@ -1,0 +1,25 @@
+{
+  "name": "com.huntergoodin.bootstrap",
+  "version": "1.0.11",
+  "displayName": "Bootstrap System",
+  "description": "Ensures editor project always opens from a specified Bootstrap scene to load dependencies before loading into the previously opened scene.",
+  "documentationUrl": "https://github.com/Persomateyunity-bootstrap-loading-system/blob/main/README.md",
+  "changelogUrl": "https://github.com/Persomatey/unity-bootstrap-loading-system/releases",
+  "license": "MIT",
+  "licensesUrl": "https://github.com/Persomatey/unity-bootstrap-loading-system/blob/main/LICENSE.md",
+  "unity": "6000.0",
+  "author": {
+    "name": "Hunter Goodin",
+    "url": "https://github.com/persomatey"
+  },
+  "dependencies": {
+    "com.unity.textmeshpro": "3.0.6"
+  },
+  "samples": [
+    {
+      "displayName": "Bootstrap Example Scenes",
+      "description": "A bootstrap scene that loads into a second scene to show the bootstrap system works.\nOn the top, navigate to Bootstrap > Bootstrap Menu > Start Scene and set it to the provided Bootstrap scene to test.",
+      "path": "Samples~/"
+    }
+  ]
+}
