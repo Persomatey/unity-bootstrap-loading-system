@@ -300,7 +300,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff2aeedab6817354f8660ca6fa6d6102, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  overloadToPreviousScenePath: 0
   nextSceneName: MyScene
   singletonInitializers: []
 --- !u!1660057539 &9223372036854775807
