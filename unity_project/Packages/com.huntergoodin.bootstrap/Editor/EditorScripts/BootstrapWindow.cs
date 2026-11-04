@@ -15,7 +15,7 @@ public class BootstrapWindow : EditorWindow
 		OverrideMenuFlow = EditorPrefs.GetBool(OverrideIntendedMenuFlowKey, false);
 	}
 
-	void OnGUI()
+    void OnGUI()
 	{
 		EditorGUILayout.LabelField("Bootstrap Settings", EditorStyles.boldLabel);
 
@@ -94,7 +94,12 @@ public class BootstrapWindow : EditorWindow
 	[MenuItem("Bootstrap/Bootstrap Menu")]
 	static void Open()
 	{
-		GetWindow<BootstrapWindow>("Bootstrap");
+		BootstrapWindow window = GetWindow<BootstrapWindow>("Bootstrap");
+
+		window.minSize = new Vector2(350, 135);
+		//window.maxSize = new Vector2(350, 135);
+
+		window.Show();
 	}
 }
 
