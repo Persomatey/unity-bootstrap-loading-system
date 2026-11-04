@@ -18,7 +18,7 @@
   "samples": [
     {
       "displayName": "Bootstrap Example Scenes",
-      "description": "A sample scene demonstrating how the bootstrap system works.",
+      "description": "A bootstrap scene that loads into a second scene to show the bootstrap system works.\nOn the top, navigate to Bootstrap > Bootstrap Menu > Start Scene and set it to the provided Bootstrap scene to test.",
       "path": "Samples~/"
     }
   ]
