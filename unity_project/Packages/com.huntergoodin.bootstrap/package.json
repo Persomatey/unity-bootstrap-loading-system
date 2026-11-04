@@ -19,7 +19,7 @@
     {
       "displayName": "Bootstrap Example Scenes",
       "description": "A sample scene demonstrating how the bootstrap system works.",
-      "path": "Samples~/ExampleScene"
+      "path": "Samples~/"
     }
   ]
 }
