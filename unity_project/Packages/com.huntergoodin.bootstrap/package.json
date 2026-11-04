@@ -17,8 +17,8 @@
   },
   "samples": [
     {
-      "displayName": "Example Scene",
-      "description": "A sample scene demonstrating the package features.",
+      "displayName": "Bootstrap Example Scenes",
+      "description": "A sample scene demonstrating how the bootstrap system works.",
       "path": "Samples~/ExampleScene"
     }
   ]
